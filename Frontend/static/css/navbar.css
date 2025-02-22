@@ -1,0 +1,59 @@
+.header-menu {
+  width: 100%;
+}
+
+nav {
+  letter-spacing: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 10px 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border: 1px solid #ac8181;
+  max-height: 52px;
+}
+
+.left-menu {
+  display: flex;
+  align-items: center;
+}
+
+nav img {
+  margin-right: 10px;
+  max-height: 25px;
+  height: auto;
+}
+
+nav a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 30px;
+  font-family: 'League Gothic', monospace;
+}
+
+.menu-tab {
+  position: fixed;
+  top: 51px;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  width: 20px;
+  height: calc(100vh - 60px);
+  border: 1px solid #ac8181;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ac8181;
+}
+
+.menu-tab img {
+  width: 35px;
+  height: auto;
+  margin: 30px 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

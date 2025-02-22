@@ -1,0 +1,205 @@
+/* Reset default styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f6f2f2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #f0e8e4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+.header-title {
+    flex-grow: 1; /* Giúp căn giữa TRANSLATOR */
+    text-align: center;
+    font-size: 22px; /* Tăng kích thước tiêu đề */
+    font-weight: bold;
+}
+
+
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.user-icon {
+    margin-left: auto;
+    padding-right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 50px;
+    height: calc(100vh - 60px);
+    background-color: #e6dbd3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-item {
+    font-size: 20px;
+    margin: 15px 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sidebar-item:hover,
+.sidebar-item.active {
+    color: blue;
+}
+
+/* Main Content */
+.container {
+    margin-left: 70px;
+    margin-top: 140px;
+    text-align: center;
+    width: 80%;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: bold;
+    color: blue;
+    margin-bottom: 20px;
+}
+
+/* Translation Area */
+.translation-area,
+.summarizer-area,
+.grammar-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 30px;
+    color: blue;
+}
+
+.translation-box,
+.summarizer-box,
+.grammar-box {
+    position: relative;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lang-select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    text-align: center;
+}
+
+.text-input, .text-output,
+.summarizer-input, .summarizer-output,
+.grammar-input, .grammar-output {
+    width: 100%;
+    height: 180px;
+    border-radius: 10px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.text-output, .summarizer-output, .grammar-output {
+    background-color: #f8f8f8;
+}
+
+.swap-icon {
+    font-size: 22px;
+    color: blue;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+/* Summarizer & Grammar Check */
+.summarizer-area, .grammar-area {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.process-button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.input-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.input-container textarea {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.upload-btn, .paste-btn {
+    position: absolute;
+    bottom: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.upload-btn {
+    left: 10px;
+}
+
+.paste-btn {
+    right: 10px;
+}
+.summarizer-img1 {
+    display: block;
+    margin: 0 auto;
+    width: 50px; 
+    height: auto;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summarizer</title>
+    <link rel="stylesheet" href="../static/css/summarization.css">
+    <link rel="stylesheet" href="../static/css/navbar.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="../script/summarization.js" defer></script>
+</head>
+<body>
+    <div class="header-menu">
+        <nav>
+            <div class="left-menu">
+                <img src="../static/images/menu.png" alt="menu">
+                <a href="#">SUMMARIZER</a>
+            </div>
+            <img src="../static/images/user.png" alt="user">
+        </nav>
+
+        <div class="menu-tab">
+            <a href="https://www.facebook.com/giang.quynh.7798574"><img src="../static/images/translator.png" alt="trans"></a>
+            <a href="https://www.tiktok.com/@ntqgiangg"><img src="../static/images/grammar.png" alt="grammar"></a>
+            <a href="https://www.instagram.com/_cutiemoemoe/?next=%2F"><img src="../static/images/sum.png" alt="sum"></a>
+            <a href="https://www.threads.net/@_cutiemoemoe"><img src="../static/images/help.png" alt="help"></a>
+            <a href="https://www.facebook.com/giang.quynh.7798574"><img src="../static/images/mail.png" alt="mail"></a>
+        </div>
+    </div>
+
+    <!-- Summarizer Section -->
+    <div class="container" style="padding-bottom: 200px;">
+        <img src="../static/images/summarizer-img1.png" alt="Globe Icon" class="logo" style="max-width: 100px;">
+        <h2>Summarizer</h2>
+        <div class="input-container">
+            <textarea class="summarizer-input" placeholder="Enter text to summarize..."></textarea>
+            <label for="upload-summarizer" class="upload-btn"><i class="bi bi-cloud-arrow-up"> Upload.Doc</i></label>
+            <input type="file" id="upload-summarizer" accept=".txt,.docx" style="display: none;">
+            <button id="paste-summarizer" class="paste-btn"><i class="bi bi-textarea-t"></i></button>
+        </div>
+        <button class="process-button" onclick="processSummarizer()">Summarize</button>
+        <textarea class="summarizer-output" readonly></textarea>
+    </div>
+</body>
+</html>
