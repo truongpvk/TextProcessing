@@ -1,0 +1,6 @@
+venv/
+datasets/
+Models/
+bin/
+__pycache__/
+.env
