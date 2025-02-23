@@ -1,6 +1,10 @@
 env/
 datasets/
-Models/
+grammarly/
+summarization/
+translation-en2vi/
+translation-vi2en/
 bin/
 __pycache__/
+.ipynb_checkpoints/
 .env
