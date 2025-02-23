@@ -21,11 +21,11 @@
         </nav>
 
         <div class="menu-tab">
-            <a href="https://www.facebook.com/giang.quynh.7798574"><img src="../static/images/translator.png" alt="trans"></a>
-            <a href="https://www.tiktok.com/@ntqgiangg"><img src="../static/images/grammar.png" alt="grammar"></a>
-            <a href="https://www.instagram.com/_cutiemoemoe/?next=%2F"><img src="../static/images/sum.png" alt="sum"></a>
-            <a href="https://www.threads.net/@_cutiemoemoe"><img src="../static/images/help.png" alt="help"></a>
-            <a href="https://www.facebook.com/giang.quynh.7798574"><img src="../static/images/mail.png" alt="mail"></a>
+            <a href="{{url_for('translator.render_translation_page')}}"><img src="../static/images/translator.png" alt="trans"></a>
+            <a href="{{url_for('grammar.render_grammar_page')}}"><img src="../static/images/grammar.png" alt="grammar"></a>
+            <a href="{{url_for('summarizer.render_summarizer_page')}}"><img src="../static/images/sum.png" alt="sum"></a>
+            <a href="#"><img src="../static/images/help.png" alt="help"></a>
+            <a href="#"><img src="../static/images/mail.png" alt="mail"></a>
         </div>
     </div>
 
@@ -51,11 +51,10 @@
 
     <div class="translation-container">
         <div class="translation-box1" contenteditable="true"></div>
+        <div class="button-container">
+            <button class="translator-button active-model-button" onclick="translate()">Translator</button>
+        </div>
         <div class="translation-box2" contenteditable="true"></div>
-    </div>
-
-    <div class="button-container">
-        <button class="translator-button" onclick="translate()">Translator</button>
     </div>
 
     <script src="{{url_for('static', filename='script/translation.js')}}"></script>

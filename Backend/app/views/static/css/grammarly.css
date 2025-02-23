@@ -103,6 +103,23 @@ main {
     margin-top: 30px;
 }
 
+.active-model-button {
+    padding: 10px;
+    border-radius: 20px;
+    border: 0.5px;
+    background-color: rgb(75, 75, 252);
+    color: white;
+    cursor: pointer;
+}
+
+.check-button {
+    margin-top: 130px;
+}
+
+.active-model-button:active {
+    background-color: rgb(48, 48, 251);
+}
+
 .input-section {
     flex: 1;
     display: flex;

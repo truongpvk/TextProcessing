@@ -43,7 +43,7 @@ h1 {
 
 .translation-container {
     display: flex;
-    gap: 100px;
+    gap: 20px;
     justify-content: center;
     align-items: center;
     position: relative;
@@ -76,4 +76,17 @@ h1 {
 .translation-box1 p,
 .translation-box2 p {
     margin: 0;
+}
+
+.active-model-button {
+    padding: 10px;
+    border-radius: 20px;
+    border: 0.5px;
+    background-color: rgb(75, 75, 252);
+    color: white;
+    cursor: pointer;
+}
+
+.active-model-button:active {
+    background-color: rgb(48, 48, 251);
 }

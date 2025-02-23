@@ -1,5 +1,7 @@
 from flask import Flask
 from app.controller.summarizer import summarizer_bp
+from app.controller.check_grammar import grammar_bp
+from app.controller.translator import translator_bp
 import os
 
 def create_app():
@@ -10,4 +12,7 @@ def create_app():
   
   # Đăng ký blueprint
   app.register_blueprint(summarizer_bp, urlprefix='/')
+  app.register_blueprint(grammar_bp)
+  app.register_blueprint(translator_bp)
+  
   return app

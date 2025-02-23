@@ -20,9 +20,9 @@
         </nav>
 
         <div class="menu-tab">
-            <a href="https://www.facebook.com/giang.quynh.7798574"><img src="../static/images/translator.png" alt="trans"></a>
-            <a href="https://www.tiktok.com/@ntqgiangg"><img src="../static/images/grammar.png" alt="grammar"></a>
-            <a href="https://www.instagram.com/_cutiemoemoe/?next=%2F"><img src="../static/images/sum.png" alt="sum"></a>
+            <a href="{{url_for('translator.render_translation_page')}}"><img src="../static/images/translator.png" alt="trans"></a>
+            <a href="{{url_for('grammar.render_grammar_page')}}"><img src="../static/images/grammar.png" alt="grammar"></a>
+            <a href="{{url_for('summarizer.render_summarizer_page')}}"><img src="../static/images/sum.png" alt="sum"></a>
             <a href="#"><img src="../static/images/help.png" alt="help"></a>
             <a href="#"><img src="../static/images/mail.png" alt="mail"></a>
         </div>

@@ -3,10 +3,10 @@ from flask import Blueprint, render_template, request, jsonify
 
 en2vi = _translator_en2vi()
 vi2en = _translator_vi2en()
-translator_bp = Blueprint('translator_bp', __name__)
+translator_bp = Blueprint('translator', __name__)
 
-@translator_bp.route('/check_grammar')
-def render_grammar_page():
+@translator_bp.route('/tranlation')
+def render_translation_page():
   return render_template('translation.html')
 
 @translator_bp.route('/translator_model', methods=['GET', 'POST'])

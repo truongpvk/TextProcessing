@@ -15,15 +15,13 @@ document.getElementById("upload-summarizer").addEventListener("change", function
 });
 
 // Summarizer processing
-function processSummarizer() {
-    let inputText = document.querySelector(".summarizer-input").value;
+function processSummarizer() { // Hàm lấy output ở đây
 
-    // Gửi input cho /summarization
-
-    document.querySelector(".summarizer-output").value = inputText.substring(0, 100) + "... (Summarized)";
 }
 
 document.getElementById("summarize-button").addEventListener("click", processSummarizer);
+
+
 
 // Paste Clipboard Text
 function pasteText(targetInput) {
