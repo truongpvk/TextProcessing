@@ -14,12 +14,40 @@ document.getElementById("upload-summarizer").addEventListener("change", function
     uploadDoc(event, ".summarizer-input");
 });
 
-// Summarizer processing
-function processSummarizer() { // Hàm lấy output ở đây
+async function sendTextToServer(text) {
+    try {
+        const response = await fetch("/summarizer_model", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ text: text })
+        });
 
+        if (!response.ok) {
+            throw new Error(`Server error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Server response:", data.output_text);
+        return data.output_text;
+    } catch (error) {
+        return "Error sending text: " + error;
+    }
 }
 
-document.getElementById("summarize-button").addEventListener("click", processSummarizer);
+// Summarizer processing
+function processSummarizer() { // Hàm lấy output ở đây
+    console.log('Get the input text');
+    const input = document.querySelector('.summarizer-input').value;
+    console.log(input);
+    sendTextToServer(input).then(output => {
+        console.log(output);
+        document.querySelector('.summarizer-output').value = output;
+    })
+}
+
+document.querySelector(".summarize-button").addEventListener("click", processSummarizer);
 
 
 
