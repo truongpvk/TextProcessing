@@ -16,7 +16,7 @@ document.getElementById("upload-summarizer").addEventListener("change", function
 
 async function sendTextToServer(text) {
     try {
-        const response = await fetch("/summarizer_model", {
+        const response = await fetch("http://127.0.0.1:5001/summarizer_model", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -41,6 +41,7 @@ function processSummarizer() { // Hàm lấy output ở đây
     console.log('Get the input text');
     const input = document.querySelector('.summarizer-input').value;
     console.log(input);
+    document.querySelector('.summarizer-output').value = "Hệ thống đang tóm tắt...!";
     sendTextToServer(input).then(output => {
         console.log(output);
         document.querySelector('.summarizer-output').value = output;

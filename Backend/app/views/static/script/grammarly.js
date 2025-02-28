@@ -3,8 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const textarea = document.querySelector('textarea');
     const pasteBtn = document.querySelector('.paste-btn');
     const uploadBtn = document.querySelector('.upload-btn');
-    const resultBox = document.querySelector('.result-box');
-    const iconItems = document.querySelectorAll('.icon-item');
     
     // Xử lý sự kiện paste text
     pasteBtn.addEventListener('click', async function() {

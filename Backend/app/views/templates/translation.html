@@ -21,9 +21,9 @@
         </nav>
 
         <div class="menu-tab">
-            <a href="{{url_for('translator.render_translation_page')}}"><img src="../static/images/translator.png" alt="trans"></a>
-            <a href="{{url_for('grammar.render_grammar_page')}}"><img src="../static/images/grammar.png" alt="grammar"></a>
-            <a href="{{url_for('summarizer.render_summarizer_page')}}"><img src="../static/images/sum.png" alt="sum"></a>
+            <a href="{{url_for('render_translator.render_translation_page')}}"><img src="../static/images/translator.png" alt="trans"></a>
+            <a href="{{url_for('render_grammar.render_grammar_page')}}"><img src="../static/images/grammar.png" alt="grammar"></a>
+            <a href="{{url_for('render_summarizer.render_summarizer_page')}}"><img src="../static/images/sum.png" alt="sum"></a>
             <a href="#"><img src="../static/images/help.png" alt="help"></a>
             <a href="#"><img src="../static/images/mail.png" alt="mail"></a>
         </div>
@@ -48,7 +48,9 @@
     </div>
 
     <div class="translation-container">
-        <div class="translation-box1" contenteditable="true"></div>
+        <div class="translation-box1" contenteditable="true">
+            
+        </div>
         <div class="button-container">
             <button class="translator-button active-model-button">Translator</button>
         </div>

@@ -1,6 +1,6 @@
 async function sendTextToServer(text, src_lang) {
     try {
-        const response = await fetch("/translator_model", {
+        const response = await fetch("http://127.0.0.1:5001/translator_model", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -24,7 +24,7 @@ function translate() {
     const inputText = document.querySelector('.translation-box1').innerText;
     const dropdown1 = document.getElementById('dropdown1');
     const src_lang = dropdown1.value === 'en' ? 1 : 2;
-
+    document.querySelector('.translation-box2').innerHTML = "Waiting for translation...";
     sendTextToServer(inputText, src_lang).then(outputText => {
         console.log("Output: ", outputText);
         document.querySelector('.translation-box2').innerHTML = outputText;
