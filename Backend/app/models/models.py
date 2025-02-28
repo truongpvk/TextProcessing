@@ -3,6 +3,7 @@ os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 
 from transformers import T5ForConditionalGeneration, T5Tokenizer, GenerationConfig, pipeline
 
+import random
 import torch
 if torch.cuda.is_available():       
     device = torch.device("cuda")
@@ -47,10 +48,29 @@ class Summarizer(PretrainModel):
 class CheckGrammar(PretrainModel):
   def __init__(self, path):
     super().__init__(path)
-    self.corrector = pipeline('text2text-generation', self.path)
+    self.corrector = T5ForConditionalGeneration.from_pretrained(path)
+    self.tokenizer = T5Tokenizer.from_pretrained(path)
+    
   
-  def active(self, origin_text):
-    return self.corrector(origin_text)[0]['generated_text']
+  def active(self, origin_text, num_return_sequences=2):
+    batch = self.tokenizer([origin_text],truncation=True,padding='max_length',max_length=64, return_tensors="pt").to('cpu')
+    
+    self.generator = GenerationConfig(
+      max_length=64,
+      num_beams=5, 
+      num_return_sequences=num_return_sequences, 
+      temperature=1.5
+    )
+    
+    translated = self.corrector.generate(**batch, generation_config=self.generator)
+    tgt_text = self.tokenizer.batch_decode(translated, skip_special_tokens=True)
+    
+    if len(tgt_text) < 1:
+      return "The sentence was correct!"
+    
+    print(tgt_text)
+    
+    return tgt_text[random.randint(0, len(tgt_text) - 1)]
 
 class Translator(PretrainModel):
   def __init__(self, path, max_length=256):
