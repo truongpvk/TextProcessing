@@ -48,16 +48,15 @@
     </div>
 
     <div class="translation-container">
-        <div class="translation-box1" contenteditable="true">
-            
-        </div>
+        <div class="translation-box1" contenteditable="true"></div>
+        <label>0 / 500</label>
         <div class="button-container">
             <button class="translator-button active-model-button">Translator</button>
         </div>
         <div class="translation-box2" contenteditable="true"></div>
     </div>
 
-    <script src="{{url_for('static', filename='script/translation.js')}}"></script>
+    <script type="module" src="{{url_for('static', filename='script/translation.js')}}"></script>
 </body>
 
 </html>

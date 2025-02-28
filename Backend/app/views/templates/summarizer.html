@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/summarization.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/navbar.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <script src="{{url_for('static', filename='script/summarization.js')}}" defer></script>
 </head>
 <body>
     <div class="header-menu">
@@ -34,6 +33,7 @@
         <h2>Summarizer</h2>
         <div class="input-container">
             <textarea class="summarizer-input" placeholder="Enter text to summarize..."></textarea>
+            <label class="countWord">0 / 500</label>
             <label for="upload-summarizer" class="upload-btn"><i class="bi bi-cloud-arrow-up"> Upload.Doc</i></label>
             <input type="file" id="upload-summarizer" accept=".txt,.docx" style="display: none;">
             <button id="paste-summarizer" class="paste-btn"><i class="bi bi-textarea-t"></i></button>
@@ -41,5 +41,7 @@
         <button class="summarize-button">Summarize</button>
         <textarea class="summarizer-output" readonly></textarea>
     </div>
+
+    <script type="module" src="{{url_for('static', filename='script/summarization.js')}}" defer></script>
 </body>
 </html>

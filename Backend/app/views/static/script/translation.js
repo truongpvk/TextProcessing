@@ -1,3 +1,6 @@
+import { limitWord } from "./limit.js";
+
+// Translate task
 async function sendTextToServer(text, src_lang) {
     try {
         const response = await fetch("http://127.0.0.1:5001/translator_model", {
@@ -31,8 +34,7 @@ function translate() {
     })
 }
 
-document.querySelector(".active-model-button").addEventListener("click", translate);
-
+// Smart language's change
 function setupDropdowns() {
     const dropdown1 = document.getElementById('dropdown1');
     const dropdown2 = document.getElementById('dropdown2');
@@ -58,6 +60,9 @@ function setupDropdowns() {
     });
 }
 
+
 document.addEventListener("DOMContentLoaded", function () {
-    setupDropdowns(); //
+    setupDropdowns();
+    document.querySelector(".active-model-button").addEventListener("click", translate);
+    limitWord(1000, ".translation-box1", ".translation-container > label");
 });

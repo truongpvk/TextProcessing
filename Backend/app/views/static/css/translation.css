@@ -43,6 +43,7 @@ h1 {
 
 .translation-container {
     display: flex;
+    position: relative;
     gap: 20px;
     justify-content: center;
     align-items: center;
@@ -50,6 +51,12 @@ h1 {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.translation-container > label {
+    position: absolute;
+    bottom: 8px;
+    left: 100px;
 }
 
 .translation-box1,

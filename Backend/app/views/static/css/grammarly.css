@@ -125,6 +125,14 @@ main {
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    position: relative;
+}
+
+.countWord {
+    position: absolute;
+    bottom: 65px;
+    left: 15px;
 }
 
 textarea {

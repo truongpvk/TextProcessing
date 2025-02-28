@@ -1,3 +1,5 @@
+import { limitWord } from "./limit.js";
+
 // Upload Document for Summarizer & Grammar Check
 function uploadDoc(event, targetInput) {
     const file = event.target.files[0];
@@ -66,15 +68,11 @@ document.getElementById("paste-summarizer").addEventListener("click", function()
 });
 
 
-
-
-
-
-
 // No Check
 // Ensure Upload and Paste buttons are positioned correctly
 document.addEventListener("DOMContentLoaded", function() {
     positionButtons();
+    limitWord(5000, ".summarizer-input", ".countWord");
 });
 
 function positionButtons() {
