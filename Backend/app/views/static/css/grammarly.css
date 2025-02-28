@@ -133,6 +133,7 @@ main {
     position: absolute;
     bottom: 65px;
     left: 15px;
+    background-color: white;
 }
 
 textarea {

@@ -1,10 +1,16 @@
 import os
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
+os.environ['NLTK_DATA'] = './app/models/nltk_data'
 
 from transformers import T5ForConditionalGeneration, T5Tokenizer, GenerationConfig, pipeline
 
 import random
 import torch
+from nltk.tokenize import sent_tokenize
+
+import nltk
+nltk.download('punkt', download_dir='./app/models/nltk_data')
+
 if torch.cuda.is_available():       
     device = torch.device("cuda")
 
@@ -19,6 +25,10 @@ summarize_model = './Models/summarization'
 grammmar_model = './Models/grammarly'
 translate_model_en2vi = './Models/translation-en2vi'
 translate_model_vi2en = './Models/translation-vi2en'
+
+def split_paragraph(paragraph, language='vietnamese'):
+  sentences = sent_tokenize(paragraph, language=language)
+  return sentences
 
 class PretrainModel:
   def __init__(self, path):
@@ -53,24 +63,22 @@ class CheckGrammar(PretrainModel):
     
   
   def active(self, origin_text, num_return_sequences=2):
-    batch = self.tokenizer([origin_text],truncation=True,padding='max_length',max_length=64, return_tensors="pt").to('cpu')
-    
     self.generator = GenerationConfig(
-      max_length=64,
+      max_new_tokens=1024,
       num_beams=5, 
       num_return_sequences=num_return_sequences, 
       temperature=1.5
     )
     
-    translated = self.corrector.generate(**batch, generation_config=self.generator)
-    tgt_text = self.tokenizer.batch_decode(translated, skip_special_tokens=True)
+    sentences = split_paragraph(origin_text, language='english')
+    output = ""
+    for sentence in sentences:
+      batch = self.tokenizer([sentence],truncation=True,padding='max_length',max_length=1024, return_tensors="pt").to('cpu')
+      translated = self.corrector.generate(**batch, generation_config=self.generator)
+      tgt_text = self.tokenizer.batch_decode(translated, skip_special_tokens=True)
+      output += " " + tgt_text[random.randint(0, len(tgt_text) - 1)]
     
-    if len(tgt_text) < 1:
-      return "The sentence was correct!"
-    
-    print(tgt_text)
-    
-    return tgt_text[random.randint(0, len(tgt_text) - 1)]
+    return output
 
 class Translator(PretrainModel):
   def __init__(self, path, max_length=256):
@@ -93,11 +101,23 @@ class Translator(PretrainModel):
     )
     
   def active_en2vi(self, english_text):
-    tokenized_text = self.tokenizer.encode(english_text, return_tensors='pt').to(device)
-    self.translator.eval()
-    vi_text = self.translator.generate(tokenized_text, generation_config=self.generator)
+    sentences = split_paragraph(english_text, language='english')
+    output = " "
     
-    return self.tokenizer.decode(vi_text[0], skip_special_tokens=True)
+    if len(sentences) < 2:
+      tokenized_text = self.tokenizer.encode(english_text, return_tensors='pt').to(device)
+      self.translator.eval()
+      vi_text = self.translator.generate(tokenized_text, generation_config=self.generator)
+      return self.tokenizer.decode(vi_text[0], skip_special_tokens=True)
+    
+    for sentence in sentences:
+      tokenized_text = self.tokenizer.encode(sentence, return_tensors='pt').to(device)
+      self.translator.eval()
+      vi_text = self.translator.generate(tokenized_text, generation_config=self.generator)
+      output += " " + self.tokenizer.decode(vi_text[0], skip_special_tokens=True)
+    
+    return output
+      
   
   def active_vi2en(self, vi_text):
     tokenized_text = self.tokenizer.encode(vi_text, return_tensors='pt').to(device)

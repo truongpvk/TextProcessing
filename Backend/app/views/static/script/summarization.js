@@ -1,20 +1,5 @@
 import { limitWord } from "./limit.js";
-
-// Upload Document for Summarizer & Grammar Check
-function uploadDoc(event, targetInput) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            document.querySelector(targetInput).value = e.target.result;
-        };
-        reader.readAsText(file);
-    }
-}
-
-document.getElementById("upload-summarizer").addEventListener("change", function(event) {
-    uploadDoc(event, ".summarizer-input");
-});
+import { pasteText, uploadDoc } from "./upload_and_paste.js";
 
 async function sendTextToServer(text) {
     try {
@@ -50,31 +35,6 @@ function processSummarizer() { // Hàm lấy output ở đây
     })
 }
 
-document.querySelector(".summarize-button").addEventListener("click", processSummarizer);
-
-
-
-// Paste Clipboard Text
-function pasteText(targetInput) {
-    navigator.clipboard.readText().then(text => {
-        document.querySelector(targetInput).value = text;
-    }).catch(err => {
-        console.error("Failed to read clipboard contents: ", err);
-    });
-}
-
-document.getElementById("paste-summarizer").addEventListener("click", function() {
-    pasteText(".summarizer-input");
-});
-
-
-// No Check
-// Ensure Upload and Paste buttons are positioned correctly
-document.addEventListener("DOMContentLoaded", function() {
-    positionButtons();
-    limitWord(5000, ".summarizer-input", ".countWord");
-});
-
 function positionButtons() {
     document.querySelectorAll(".input-container").forEach(container => {
         const textarea = container.querySelector("textarea");
@@ -97,3 +57,22 @@ function positionButtons() {
         icon.style.display = "block";
     });
 }
+
+
+// No Check
+// Ensure Upload and Paste buttons are positioned correctly
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector(".summarize-button").addEventListener("click", processSummarizer);
+
+    document.getElementById("paste-summarizer").addEventListener("click", function () {
+        pasteText(".summarizer-input");
+    });
+
+    document.getElementById("upload-summarizer").addEventListener("change", function (event) {
+        uploadDoc(event, ".summarizer-input");
+    });
+
+    positionButtons();
+    limitWord(5000, ".summarizer-input", ".countWord");
+});
+

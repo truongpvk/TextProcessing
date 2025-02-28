@@ -95,9 +95,8 @@ body {
 }
 
 /* Translation Area */
-.translation-area,
-.summarizer-area,
-.grammar-area {
+.summarizer-area
+{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,9 +105,7 @@ body {
     color: blue;
 }
 
-.translation-box,
-.summarizer-box,
-.grammar-box {
+.summarizer-box {
     position: relative;
     width: 40%;
     display: flex;
@@ -125,19 +122,14 @@ body {
     text-align: center;
 }
 
-.text-input, .text-output,
-.summarizer-input, .summarizer-output,
-.grammar-input, .grammar-output {
-    width: 100%;
-    height: 180px;
+.summarizer-input, .summarizer-output{
     border-radius: 10px;
     padding: 12px;
     border: 1px solid #ccc;
-    font-size: 16px;
     margin-top: 5px;
 }
 
-.text-output, .summarizer-output, .grammar-output {
+.summarizer-output {
     background-color: #f8f8f8;
 }
 
@@ -152,7 +144,7 @@ body {
 }
 
 /* Summarizer & Grammar Check */
-.summarizer-area, .grammar-area {
+.summarizer-area {
     display: none;
     text-align: center;
     margin-top: 20px;
@@ -182,23 +174,29 @@ body {
     position: absolute;
     top: 20px;
     right: 0;
+    background-color: white;
+}
+
+textarea {
+    width: 100%;
+    height: 300px;
+    font-family: 'Langar', monospace;
+    font-size: 30px;
 }
 
 .input-container textarea {
-    width: 100%;
-    height: 150px;
     padding: 10px;
     border-radius: 5px;
-    font-size: 14px;
 }
 
 .upload-btn, .paste-btn {
     position: absolute;
     bottom: 10px;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     background: none;
     border: none;
+    background-color: white;
 }
 
 .upload-btn {

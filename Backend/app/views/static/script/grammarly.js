@@ -1,39 +1,5 @@
 import { limitWord } from "./limit.js";
-
-// Lấy các phần tử DOM
-const textarea = document.querySelector('textarea');
-const pasteBtn = document.querySelector('.paste-btn');
-const uploadBtn = document.querySelector('.upload-btn');
-
-// Xử lý sự kiện paste text
-pasteBtn.addEventListener('click', async function() {
-    try {
-        const text = await navigator.clipboard.readText();
-        textarea.value = text;
-        checkGrammar(text);
-    } catch (err) {
-        alert('Không thể truy cập clipboard. Vui lòng paste trực tiếp vào ô nhập liệu.');
-    }
-});
-
-// Xử lý sự kiện upload file
-uploadBtn.addEventListener('click', function() {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = '.txt,.doc,.docx';
-    
-    input.onchange = function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                textarea.value = e.target.result;
-                checkGrammar(e.target.result);
-            };
-            reader.readAsText(file);
-        }
-    };
-});
+import { pasteText, uploadDoc } from "./upload_and_paste.js"
 
 function checkGrammar() {
     const textarea = document.querySelector('textarea');
@@ -44,6 +10,8 @@ function checkGrammar() {
         alert("Vui lòng nhập văn bản để kiểm tra!");
         return;
     }
+    
+    resultBox.innerHTML = "Checking...";
 
     fetch('http://127.0.0.1:5001/grammar_model', {
         method: 'POST',
@@ -52,21 +20,36 @@ function checkGrammar() {
         },
         body: JSON.stringify({ text: text })
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            resultBox.innerHTML = `<p class="error">${data.error}</p>`;
-        } else {
-            resultBox.innerHTML = `<p class="corrected-text">${data.output_text}</p>`;
-        }
-    })
-    .catch(error => {
-        console.error('Lỗi:', error);
-        resultBox.innerHTML = `<p class="error">Có lỗi xảy ra, vui lòng thử lại.</p>`;
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                resultBox.innerHTML = `<p class="error">${data.error}</p>`;
+            } else {
+                resultBox.innerHTML = `<p class="corrected-text">${data.output_text}</p>`;
+            }
+        })
+        .catch(error => {
+            console.error('Lỗi:', error);
+            resultBox.innerHTML = `<p class="error">Có lỗi xảy ra, vui lòng thử lại.</p>`;
+        });
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    document.querySelector(".active-model-button").addEventListener("click", checkGrammar);
-    limitWord(500, ".input-section > textarea", ".countWord");
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector(".active-model-button").addEventListener("click", () => {
+        checkGrammar();
+    });
+    limitWord(1000, ".input-section > textarea", ".countWord");
+
+    document.querySelector('.paste-btn').addEventListener('click', () => {
+        pasteText(".input-section > textarea");
+    });
+
+    document.querySelector('.upload-btn').addEventListener('click', () => {
+        document.getElementById('upload-input').click();
+    })
+
+    document.getElementById('upload-input').addEventListener('change', function (e) {
+        uploadDoc(e, ".input-section > textarea")
+    });
+
 });

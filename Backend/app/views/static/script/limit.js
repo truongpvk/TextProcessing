@@ -7,11 +7,10 @@ export function limitWord(maxWord, textBox_selector, label_selector) {
 
   textBox.addEventListener("input", function () {
       let text = textBox.tagName === "DIV" ? textBox.innerText : textBox.value;
-      let words = text.trim().split(/\s+/).filter(word => word.length > 0);
-      let wordCount = words.length;
-      
+      let wordCount = countWord(text.trim());
+
       if (wordCount > maxWord) {
-        let truncatedText = words.slice(0, maxWord).join(" ");
+        let truncatedText = text.slice(0, maxWord);
         if (textBox.tagName === "DIV") {
             textBox.innerText = truncatedText;
             placeCaretAtEnd(textBox);
@@ -32,4 +31,9 @@ function placeCaretAtEnd(el) {
   range.collapse(false);
   sel.removeAllRanges();
   sel.addRange(range);
+}
+
+export function countWord(vanBan) {
+  const vanBanChiChuaChuCai = vanBan.replace(/[^a-zA-ZÀ-ỹ]/g, '');
+  return vanBanChiChuaChuCai.length;
 }

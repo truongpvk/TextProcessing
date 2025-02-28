@@ -1,4 +1,4 @@
-import { limitWord } from "./limit.js";
+import { limitWord, countWord } from "./limit.js";
 
 // Translate task
 async function sendTextToServer(text, src_lang) {
@@ -60,6 +60,9 @@ function setupDropdowns() {
     });
 }
 
+const textBox = document.querySelector(".translation-box1");
+const label = document.querySelector(".translation-container > label");
+const maxWord = 1000;
 
 document.addEventListener("DOMContentLoaded", function () {
     setupDropdowns();

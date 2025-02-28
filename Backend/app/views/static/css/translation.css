@@ -57,11 +57,13 @@ h1 {
     position: absolute;
     bottom: 8px;
     left: 100px;
+    background-color: white;
 }
 
 .translation-box1,
 .translation-box2 {
     font-family: 'Langar', monospace;
+    font-size: 20px;
     border: 1px solid #ac8181;
     padding: 15px;
     width: 450px;
@@ -69,7 +71,7 @@ h1 {
     box-sizing: border-box;
     flex-shrink: 0;
     background-color: #ffffff;
-    overflow-y: auto;
+    overflow: auto;
 }
 
 .translation-box1 {
