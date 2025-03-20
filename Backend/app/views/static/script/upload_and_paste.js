@@ -4,6 +4,7 @@ export function uploadDoc(event, targetInput) {
       const reader = new FileReader();
       reader.onload = function(e) {
           document.querySelector(targetInput).value = e.target.result;
+          document.querySelector(targetInput).dispatchEvent(new Event('input', { bubbles: true }));
       };
       reader.readAsText(file);
   }

@@ -1,4 +1,4 @@
-from app.models.models import _summarizer, _en2vi, _vi2en
+from app.models.models import _summarizer
 from flask import Blueprint, request, jsonify
 
 summarizer_bp = Blueprint('summarizer', __name__)

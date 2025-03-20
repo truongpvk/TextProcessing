@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for
 
 summarizer_rd = Blueprint('render_summarizer', __name__)
 

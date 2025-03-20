@@ -8,3 +8,7 @@ bin/
 __pycache__/
 .ipynb_checkpoints/
 .env
+Report/
+Design/
+test/
+test_data/
